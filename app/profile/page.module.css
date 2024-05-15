@@ -1,0 +1,14 @@
+.formWrapper{
+    margin-top: 48px;
+    margin-bottom: 72px;
+}
+.formWrapper input{
+    min-width: 344px;
+    height: 48px;
+}
+.formWrapper button{
+    background-color: #26B7CD;
+    width: 128px;
+    height: 48px;
+    margin-top: 12px;
+}

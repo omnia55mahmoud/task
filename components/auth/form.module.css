@@ -1,0 +1,85 @@
+.main{
+    height: 800px;
+  }
+  .main .card{
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
+    background-color: #F9FAFB;
+    border-radius: 16px;
+  
+  }
+  .main .card h4{
+    font-size: 32px;
+    color: #344054;
+    font-family: "Rubik-Medium";
+    margin-bottom: 16px;
+  }
+  .main .card form label{
+      color: #475467;
+      font-size: 14px;
+      font-family: "Rubik-Medium";
+  }
+  .main .card-body{
+    padding: 32px !important;
+  }
+  .main .card form input{
+    height: 48px;
+    padding: 12px 16px 12px 12px;
+    border: 1px solid #D0D5DD;
+  }
+  .main .card form button{
+    padding: 14px 0;
+    font-size: 14px;
+    font-family: "Rubik-Medium";
+  }
+  .sperator{
+    position: relative;
+    text-align: center;
+    margin-top: 28px;
+  }
+  .sperator::before{
+    position: absolute;
+    content: "";
+    top: 13px;
+    width: 45%;
+    border: 2px solid #E4E7EC;
+    color: gray;
+    left: 0;
+  }
+  .sperator::after{
+    position: absolute;
+    content: "";
+    top: 13px;
+    width: 45%;
+    border: 2px solid #E4E7EC;
+    color: gray;
+    right: 0;
+  }
+  .link{
+    font-size: 14px;
+    font-family: "Rubik-Regular";
+    color: #475467;
+    text-align: center;
+    margin-top: 16px;
+  }
+  .link a{
+    color: #197A89;
+  }
+  .error{
+       background-color: #F9E8E9;
+       color: #EA1515;
+       border-radius: 8px;
+       padding: 10px 0;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin: 16px 0;
+  }
+  .error p{
+    margin-bottom: 0;
+  }
+  .errTxt{
+    color: #EA1515;
+    font-size: 14px;
+    font-family: "Rubik-Regular";
+    margin-top: 4px;
+  }
