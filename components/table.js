@@ -1,6 +1,17 @@
+"use client"
+import store from "@/store";
 import classes from "./table.module.css";
+import {  useSelector ,useDispatch} from "react-redux";
+import { crudActions } from "@/store";
 const Table = () =>{
+  const products = useSelector((state) => state.crud.products);
+  const dispatch = useDispatch();
+  const display=()=>{
+      dispatch(crudActions.displayUpdateForm())
+  }
+
     return (
+
 <div className="container">
     <div className={`row ${classes.tableWrapper}`}>
     <table className="table table-borderless">
@@ -13,27 +24,27 @@ const Table = () =>{
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+   {products.map(product=> {
+     return (
+      <tr key={product.id}>
+      <th>{product.name}</th>
+      <td>{product.price}</td>
+      <td>{product.quantity}</td>
+      <td>
+        <button className="btn btn-danger" >delete</button>
+        <button className="btn btn-primary" onClick={display}>edit</button>
+      </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+     )
+   }
+  
+  )}
+    
   </tbody>
 </table>
     </div>
 </div>
+
     )
 }
 export default Table;
