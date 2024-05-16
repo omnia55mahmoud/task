@@ -5,6 +5,7 @@ import {  useSelector ,useDispatch} from "react-redux";
 import { crudActions } from "@/store";
 const Table = () =>{
   const products = useSelector((state) => state.crud.products);
+  console.log(products);
   const dispatch = useDispatch();
   const display=()=>{
       dispatch(crudActions.displayUpdateForm())

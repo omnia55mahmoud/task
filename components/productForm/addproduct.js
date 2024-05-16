@@ -9,9 +9,6 @@ const AddProduct = () => {
     const products = useSelector((state) => state.crud.products);
     const show = useSelector((state) => state.crud.showUpdateForm);
 
-    useEffect(() => {
-        localStorage.setItem('products', JSON.stringify(products));
-    }, [products]);
 
     const addProductHandler = (event) => {
         event.preventDefault();
