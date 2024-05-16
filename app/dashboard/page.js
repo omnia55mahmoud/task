@@ -7,11 +7,12 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 export default function ProfilePage() {
-  const { isAuthorized } = useSelector((state) => state.crud);
+  const isAuth = useSelector((state) => state.crud.isAuthorized);
+console.log(isAuth);
   const [loading, setLoading] = useState(true);
   const { push } = useRouter();
   useEffect(() => {
-    if (!isAuthorized) {
+    if (!isAuth) {
       push("/");
     } else {
       setLoading(false);

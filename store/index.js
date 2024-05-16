@@ -1,5 +1,4 @@
 "use client";
-import UpdateProduct from "@/components/productForm/updateProduct";
 import { createSlice, configureStore, current } from "@reduxjs/toolkit";
 
 const crudSlice = createSlice({
@@ -54,6 +53,7 @@ const crudSlice = createSlice({
     userRegister(state, action) {
       state.users.push(action.payload);
     },
+    
     userLogin(state, action) {
       state.isAuthorized = true;
       state.currentUser =
@@ -62,7 +62,6 @@ const crudSlice = createSlice({
 
     userLogout(state) {
       state.isAuthorized = false;
-      state.currentUser = null;
     },
   },
 });
