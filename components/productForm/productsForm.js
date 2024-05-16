@@ -1,17 +1,15 @@
-"use client"
+"use client";
 
 import { useSelector } from "react-redux";
-import AddProduct from "./addproduct";
-import UpdateProduct from "./updateProduct";
+import AddOrUpdateProduct from "./addOrUpdateProduct";
 
-const ProductForm=()=>{
-    const show = useSelector((state) => state.crud.showUpdateForm);
+const ProductForm = () => {
+  const show = useSelector((state) => state.crud.showUpdateForm);
 
-    return(
-        <>
-        {show ? <UpdateProduct /> : <AddProduct/>}
+  return (
+    <>
+      <AddOrUpdateProduct />
     </>
-  
-    )
-}
+  );
+};
 export default ProductForm;

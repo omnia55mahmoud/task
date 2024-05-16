@@ -1,32 +1,68 @@
 "use client";
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import UpdateProduct from "@/components/productForm/updateProduct";
+import { createSlice, configureStore, current } from "@reduxjs/toolkit";
 
 const crudSlice = createSlice({
   name: "crud",
   initialState: {
-    products: [],
+    users: [],
     showUpdateForm: false,
+    isAuthorized: false,
+    currentUser: null,
+    editProduct: null,
   },
-
   reducers: {
     addProduct(state, action) {
-      state.products.push(action.payload);
+      const user = state.users.find(
+        (user) => user.email === state.currentUser.email
+      );
+      if (user) {
+        user.products.push(action.payload);
+        state.currentUser = { ...user };
+      }
     },
     editProduct(state, action) {
-      const index = state.products.findIndex(
+      const product = state.currentUser.products.find(
         (product) => product.id === action.payload.id
       );
-      if (index !== -1) {
-        state.products[index] = action.payload;
+      state.editProduct = product;
+    },
+    updateProduct(state, action) {
+      const user = state.users.find(
+        (user) => user.email === state.currentUser.email
+      );
+      if (user) {
+        const productIndex = user.products.findIndex(
+          (product) => product.id === action.payload.id
+        );
+        if (productIndex !== -1) {
+          user.products[productIndex] = action.payload;
+          state.currentUser = { ...user };
+          state.editProduct = null;
+        }
       }
     },
     deleteProduct(state, action) {
-      state.products = state.products.filter(
-        (product) => product.id !== action.payload
-      );
+      const user = users.find((user) => user.email === state.currentUser.email);
+      if (user) {
+        user.products = user.products.filter(
+          (product) => product.id !== action.payload.id
+        );
+        state.currentUser = { ...user };
+      }
     },
-    displayUpdateForm(state) {
-      state.showUpdateForm = true;
+    userRegister(state, action) {
+      state.users.push(action.payload);
+    },
+    userLogin(state, action) {
+      state.isAuthorized = true;
+      state.currentUser =
+        state.users.find((user) => user.email === action.payload.email) || null;
+    },
+
+    userLogout(state) {
+      state.isAuthorized = false;
+      state.currentUser = null;
     },
   },
 });
