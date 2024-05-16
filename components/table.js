@@ -8,6 +8,9 @@ const Table = () => {
   const handleEdit = (id) => {
     dispatch(crudActions.editProduct({ id }));
   };
+  const handleDelete = (id) => {
+    dispatch(crudActions.deleteProduct({ id }));
+  };
   return (
     <div className="container">
       <div className={`row ${classes.tableWrapper}`}>
@@ -30,7 +33,7 @@ const Table = () => {
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
                   <td className="text-center">
-                    <button className="btn btn-danger mx-2">delete</button>
+                    <button className="btn btn-danger mx-2"   onClick={() => handleDelete(product.id)}>delete</button>
                     <button
                       className="btn btn-primary"
                       onClick={() => handleEdit(product.id)}>

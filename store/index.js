@@ -43,7 +43,7 @@ const crudSlice = createSlice({
       }
     },
     deleteProduct(state, action) {
-      const user = users.find((user) => user.email === state.currentUser.email);
+      const user = state.users.find((user) => user.email === state.currentUser.email);
       if (user) {
         user.products = user.products.filter(
           (product) => product.id !== action.payload.id
