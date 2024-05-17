@@ -9,6 +9,7 @@ import { crudActions } from "@/store";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Input from "../input";
+import Wrapper from "./wrapper";
 const SignUp = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
@@ -64,63 +65,57 @@ const SignUp = () => {
     onSubmit: handleSubmit,
   });
   return (
-    <div className={`container ${classes.main}`}>
-      <div className="row justify-content-center align-items-center h-100">
-        <div className="col-lg-4">
-          <div className={classes.card}>
-            <div className={`card-body ${classes["card-body"]}`}>
-              <h4>Sign up</h4>
-             
-              <form onSubmit={formik.handleSubmit}>
-                <Input
-                  label="name"
-                  type="text"
-                  id="name"
-                  placeholder="Enter your name"
-                  onchange={formik.handleChange}
-                  onblur={formik.handleBlur}
-                  value={formik.values.nam}
-                  name="name"
-                  error={formik.touched.name && formik.errors.name}
-                  errorClass={classes.errTxt}
-                />
-                 <Input
-                  label="Email"
-                  type="text"
-                  id="email"
-                  placeholder="Enter your email"
-                  onchange={formik.handleChange}
-                  onblur={formik.handleBlur}
-                  value={formik.values.email}
-                  name="email"
-                  error={formik.touched.email && formik.errors.email}
-                  errorClass={classes.errTxt}
-                />
-               <Input
-                  label="Password"
-                  type="password"
-                  id="password"
-                  placeholder="Enter your password"
-                  onchange={formik.handleChange}
-                  onblur={formik.handleBlur}
-                  value={formik.values.password}
-                  name="password"
-                  error={formik.touched.password && formik.errors.password}
-                  errorClass={classes.errTxt}
-                />
-               
+    <Wrapper title="Sign up">
+      <form onSubmit={formik.handleSubmit} className={classes.form}>
+        <Input
+          label="name"
+          type="text"
+          id="name"
+          placeholder="Enter your name"
+          onchange={formik.handleChange}
+          onblur={formik.handleBlur}
+          value={formik.values.nam}
+          name="name"
+          error={formik.touched.name && formik.errors.name}
+          errorClass={classes.errTxt}
+        />
+        <Input
+          label="Email"
+          type="text"
+          id="email"
+          placeholder="Enter your email"
+          onchange={formik.handleChange}
+          onblur={formik.handleBlur}
+          value={formik.values.email}
+          name="email"
+          error={formik.touched.email && formik.errors.email}
+          errorClass={classes.errTxt}
+        />
+        <Input
+          label="Password"
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          onchange={formik.handleChange}
+          onblur={formik.handleBlur}
+          value={formik.values.password}
+          name="password"
+          error={formik.touched.password && formik.errors.password}
+          errorClass={classes.errTxt}
+        />
 
-                <button className="btn btn-primary w-100" style={{background:"#26B7CD", border:"none"}}>Submit</button>
-                <div className={classes.sperator}>OR</div>
-                <p className={classes.link}>
-                  Already have an account? <Link href="/">Login</Link>
-                </p>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <button
+          className="btn btn-primary w-100"
+          style={{ background: "#26B7CD", border: "none" }}
+        >
+          Submit
+        </button>
+        <div className={classes.sperator}>OR</div>
+        <p className={classes.link}>
+          Already have an account? <Link href="/">Login</Link>
+        </p>
+      </form>
+    </Wrapper>
   );
 };
 export default SignUp;

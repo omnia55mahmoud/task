@@ -1,0 +1,18 @@
+.main{
+    height: 800px;
+  }
+  .main .card{
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
+    background-color: #F9FAFB;
+    border-radius: 16px;
+  
+  }
+  .main .card h4{
+    font-size: 32px;
+    color: #344054;
+    font-family: "Rubik-Medium";
+    margin-bottom: 16px;
+  }
+  .card-body{
+    padding: 32px !important;
+  }

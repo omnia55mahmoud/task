@@ -66,28 +66,26 @@ const crudSlice = createSlice({
   },
 });
 
-// Define your localStorage middleware
 const localStorageMiddleware = (store) => (next) => (action) => {
   const result = next(action);
   localStorage.setItem("reduxState", JSON.stringify(store.getState()));
   return result;
 };
 
-// Create a function to load initial state from localStorage
 const loadStateFromLocalStorage = () => {
   const serializedState = localStorage.getItem("reduxState");
   if (serializedState === null) {
-    return undefined; // If no state is found, return undefined
+    return undefined; 
   }
   return JSON.parse(serializedState);
 };
 
-// Create the store with initial state loaded from localStorage if available
+
 const store = configureStore({
   reducer: {
     crud: crudSlice.reducer,
   },
-  preloadedState: loadStateFromLocalStorage(), // Load initial state from localStorage
+  preloadedState: loadStateFromLocalStorage(), 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),
 });
