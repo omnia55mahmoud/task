@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
+import Input from "../input";
 
 const Login = () => {
   const { push } = useRouter();
@@ -60,44 +61,32 @@ const Login = () => {
               <h4>Sign in</h4>
 
               <form onSubmit={formik.handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="email"
-                    placeholder="Enter your email"
-                    name="email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                  {formik.errors.email && (
-                    <p className={classes.errTxt}>{formik.errors.email}</p>
-                  )}
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                  <input
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    placeholder="Enter your password"
-                    name="password"
-                  />
-                  {formik.errors.password && (
-                    <p className={classes.errTxt}>{formik.errors.password}</p>
-                  )}
-                </div>
-
-                <button className="btn btn-primary w-100">Submit</button>
+              <Input
+                  label="Email"
+                  type="text"
+                  id="email"
+                  placeholder="Enter your email"
+                  onchange={formik.handleChange}
+                  onblur={formik.handleBlur}
+                  value={formik.values.email}
+                  name="email"
+                  error={formik.touched.email && formik.errors.email}
+                  errorClass={classes.errTxt}
+                />
+               <Input
+                  label="Password"
+                  type="password"
+                  id="password"
+                  placeholder="Enter your password"
+                  onchange={formik.handleChange}
+                  onblur={formik.handleBlur}
+                  value={formik.values.password}
+                  name="password"
+                  error={formik.touched.password && formik.errors.password}
+                  errorClass={classes.errTxt}
+                />
+              
+                <button className="btn btn-primary w-100" style={{background:"#26B7CD", border:"none"}}>Submit</button>
                 <div className={classes.sperator}>OR</div>
                 <p className={classes.link}>
                   Don’t have account? <Link href="/signup">Signup</Link>

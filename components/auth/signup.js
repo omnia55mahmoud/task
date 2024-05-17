@@ -110,7 +110,7 @@ const SignUp = () => {
                 />
                
 
-                <button className="btn btn-primary w-100">Submit</button>
+                <button className="btn btn-primary w-100" style={{background:"#26B7CD", border:"none"}}>Submit</button>
                 <div className={classes.sperator}>OR</div>
                 <p className={classes.link}>
                   Already have an account? <Link href="/">Login</Link>

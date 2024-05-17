@@ -46,7 +46,7 @@ const Table = () => {
                     <button className="btn btn-danger mx-2"   onClick={() => handleDelete(product.id)}>delete</button>
                     <button
                       className="btn btn-primary"
-                      onClick={() => handleEdit(product.id)}>
+                      onClick={() => handleEdit(product.id)} style={{background:"#26B7CD", border:"none"}}>
                       edit
                     </button>
                   </td>
@@ -56,7 +56,7 @@ const Table = () => {
           </tbody>
         </table>
       <div className="text-center mt-3">
-      <CSVLink className="btn btn-primary" data={products} headers={headers} separator={";"} filename="products.csv">
+      <CSVLink className="btn btn-primary" data={products} headers={headers} separator={";"} filename="products.csv" style={{background:"#26B7CD", border:"none"}}>
         Export
       </CSVLink>
       </div>
