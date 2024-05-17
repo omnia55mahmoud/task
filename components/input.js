@@ -1,8 +1,9 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import classes from "./input.module.css";
 const Input = ({label,type,placeholder,onchange,onblur,value,name, error, errorClass})=>{
     return(
-        <div className="mb-3">
+        <div className={`mb-3 ${classes["input-wrapper"]}`}>
         <label htmlFor="name" className="form-label">
           {label}
         </label>

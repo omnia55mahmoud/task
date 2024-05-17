@@ -55,11 +55,10 @@ const Login = () => {
   });
   return (
     <Wrapper title="Sign in">
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className={classes.form}>
         <Input
           label="Email"
           type="text"
-          id="email"
           placeholder="Enter your email"
           onchange={formik.handleChange}
           onblur={formik.handleBlur}
@@ -71,7 +70,6 @@ const Login = () => {
         <Input
           label="Password"
           type="password"
-          id="password"
           placeholder="Enter your password"
           onchange={formik.handleChange}
           onblur={formik.handleBlur}
