@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { notFound } from "next/navigation";
 import { useState } from "react";
+import Loader from "@/components/loader";
 export default function ProfilePage() {
   const {isAuthorized} = useSelector((state) => state.crud);
   const [loading, setLoading] = useState(true);
@@ -27,9 +28,7 @@ export default function ProfilePage() {
             justifyContent: "center",
             alignItems: "center",
           }}>
-          <div class="spinner-border" role="status">
-            <span class="sr-only"></span>
-          </div>
+         <Loader/>
         </div>
       ) : (
         <>
