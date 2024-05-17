@@ -24,6 +24,7 @@ const Table = () => {
   return (
     <div className="container">
       <div className={`row ${classes.tableWrapper}`}>
+      <div class="table-responsive">
         <table className="table table-borderless">
           <thead>
             <tr className="text-center">
@@ -43,18 +44,19 @@ const Table = () => {
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
                   <td className="text-center">
-                    <button className="btn btn-danger mx-2"   onClick={() => handleDelete(product.id)}>delete</button>
-                    <button
+                   <button
                       className="btn btn-primary"
-                      onClick={() => handleEdit(product.id)} style={{background:"#26B7CD", border:"none"}}>
+                      onClick={() => handleEdit(product.id)} style={{background:"#fff", borderColor:"#26B7CD",color:"#26B7CD",borderRadius:"8px"}}>
                       edit
                     </button>
+                    <button className="btn btn-danger mx-2"   onClick={() => handleDelete(product.id)} style={{background:"#F4656E",borderRadius:"8px",border:"none"}}>delete</button>
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+      </div>
       <div className="text-center mt-3">
       <CSVLink className="btn btn-primary" data={products} headers={headers} separator={";"} filename="products.csv" style={{background:"#26B7CD", border:"none"}}>
         Export

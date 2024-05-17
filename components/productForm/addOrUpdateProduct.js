@@ -5,6 +5,7 @@ import { crudActions } from "@/store";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect } from "react";
+import Input from "../input";
 
 const AddOrUpdateProduct = () => {
   const dispatch = useDispatch();
@@ -74,61 +75,44 @@ const AddOrUpdateProduct = () => {
         <form
           onSubmit={formik.handleSubmit}
           className="d-flex justify-content-between align-items-center">
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-              Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              placeholder="Enter your name"
-              name="name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.name && formik.errors.name}
-            />
-            {formik.touched.name && formik.errors.name ? (
-              <p className="text-danger">{formik.errors.name}</p>
-            ) : null}
-          </div>
-          <div className="mb-3">
-            <label htmlFor="price" className="form-label">
-              Price
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="price"
-              placeholder="Enter price"
-              name="price"
-              value={formik.values.price}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.price && formik.errors.price ? (
-              <p className="text-danger">{formik.errors.price}</p>
-            ) : null}
-          </div>
-          <div className="mb-3">
-            <label htmlFor="quantity" className="form-label">
-              Quantity
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="quantity"
-              placeholder="Enter quantity"
-              name="quantity"
-              value={formik.values.quantity}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.quantity && formik.errors.quantity ? (
-              <p className="text-danger">{formik.errors.quantity}</p>
-            ) : null}
-          </div>
+               <Input
+                  label="Name"
+                  type="text"
+                  id="name"
+                  placeholder="Enter product name"
+                  onchange={formik.handleChange}
+                  onblur={formik.handleBlur}
+                  value={formik.values.name}
+                  name="name"
+                  error={formik.touched.name && formik.errors.name}
+                  errorClass="text-danger"
+                />
+                 <Input
+                  label="Price"
+                  type="number"
+                  id="price"
+                  placeholder="Enter price"
+                  onchange={formik.handleChange}
+                  onblur={formik.handleBlur}
+                  value={formik.values.price}
+                  name="price"
+                  error={formik.touched.price && formik.errors.price}
+                  errorClass="text-danger"
+                />
+      
+               <Input
+                  label="Quantity"
+                  type="number"
+                  id="quantity"
+                  placeholder="Enter quantity"
+                  onchange={formik.handleChange}
+                  onblur={formik.handleBlur}
+                  value={formik.values.quantity}
+                  name="quantity"
+                  error={formik.touched.quantity && formik.errors.quantity}
+                  errorClass="text-danger"
+                />
+         
           <button className="btn btn-primary">
             {editProduct ? "Edite" : "Save"}
           </button>
