@@ -4,10 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { crudActions } from "@/store";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Input from "../input";
 const SignUp = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
@@ -24,17 +25,31 @@ const SignUp = () => {
   });
 
   const handleSubmit = (values) => {
-    const payload = {
-      id: Math.random(),
-      name: values.name,
-      email: values.email,
-      password: values.password,
-      products: [],
-    };
+    const serializedState = localStorage.getItem("reduxState");
+    let users = [];
+    if (serializedState) {
+      const storedState = JSON.parse(serializedState);
+      users = storedState.crud.users;
+    }
+    const emailExists = users.some(user => user.email === values.email);
+    if (emailExists) {
+      // Handle existing email
+      toast.error("Email already in use.");
+    } else {
+      const payload = {
+        id: Math.random(),
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        products: [],
+      };
     dispatch(crudActions.userRegister(payload));
-    formik.resetForm();
-    toast.success("User Registered Successfully");
-    push("/");
+      formik.resetForm();
+      toast.success("User Registered Successfully");
+      push("/");
+    
+    }
+   
   };
 
   const formik = useFormik({
@@ -55,62 +70,45 @@ const SignUp = () => {
           <div className={classes.card}>
             <div className={`card-body ${classes["card-body"]}`}>
               <h4>Sign up</h4>
-
+             
               <form onSubmit={formik.handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    placeholder="Enter your name"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.name}
-                    name="name"
-                  />
-                  {formik.errors.name && (
-                    <p className={classes.errTxt}>{formik.errors.name}</p>
-                  )}
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="email"
-                    placeholder="Enter your email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                    name="email"
-                  />
-                  {formik.errors.email && (
-                    <p className={classes.errTxt}>{formik.errors.email}</p>
-                  )}
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    placeholder="Enter your password"
-                    name="password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.password}
-                  />
-                  {formik.errors.password && (
-                    <p className={classes.errTxt}>{formik.errors.password}</p>
-                  )}
-                </div>
+                <Input
+                  label="name"
+                  type="text"
+                  id="name"
+                  placeholder="Enter your name"
+                  onchange={formik.handleChange}
+                  onblur={formik.handleBlur}
+                  value={formik.values.nam}
+                  name="name"
+                  error={formik.touched.name && formik.errors.name}
+                  errorClass={classes.errTxt}
+                />
+                 <Input
+                  label="Email"
+                  type="text"
+                  id="email"
+                  placeholder="Enter your email"
+                  onchange={formik.handleChange}
+                  onblur={formik.handleBlur}
+                  value={formik.values.email}
+                  name="email"
+                  error={formik.touched.email && formik.errors.email}
+                  errorClass={classes.errTxt}
+                />
+               <Input
+                  label="Password"
+                  type="password"
+                  id="password"
+                  placeholder="Enter your password"
+                  onchange={formik.handleChange}
+                  onblur={formik.handleBlur}
+                  value={formik.values.password}
+                  name="password"
+                  error={formik.touched.password && formik.errors.password}
+                  errorClass={classes.errTxt}
+                />
+               
 
                 <button className="btn btn-primary w-100">Submit</button>
                 <div className={classes.sperator}>OR</div>

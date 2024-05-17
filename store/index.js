@@ -51,7 +51,7 @@ const crudSlice = createSlice({
       }
     },
     userRegister(state, action) {
-      state.users.push(action.payload);
+        state.users.push(action.payload);
     },
     
     userLogin(state, action) {
