@@ -56,6 +56,7 @@ const Login = () => {
   return (
     <Wrapper title="Sign in">
       <form onSubmit={formik.handleSubmit} className={classes.form}>
+        {(formik.errors.password || formik.errors.email) && <div className={classes.error}><p>Invalid email or password!</p></div>}
         <Input
           label="Email"
           type="text"
@@ -81,6 +82,7 @@ const Login = () => {
 
         <button
           className="btn btn-primary w-100"
+          type="submit"
           style={{ background: "#26B7CD", border: "none" }}
         >
           Submit
