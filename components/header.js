@@ -28,7 +28,7 @@ import { useRouter } from "next/navigation";
               <button className={classes.dropdownBtn} onClick={onDisplayBtnHandler}>
                 <p className="mb-0">Hellow World</p>
                 <Image src={Icon} alt="angle down icon"/>
-               {displayLogoutBtn &&  <button href="/" className={classes.logOutBtn} onClick={logoutHandler}>
+                {displayLogoutBtn &&  <button href="/" className={classes.logOutBtn} onClick={logoutHandler}>
                  LogOut
                 </button>}
               </button>
