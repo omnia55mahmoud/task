@@ -2,6 +2,8 @@
 import classes from "./table.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { crudActions } from "@/store";
+import { useTable } from "react-table";
+import { CSVLink } from "react-csv";
 const Table = () => {
   const { products } = useSelector((state) => state.crud.currentUser);
   const dispatch = useDispatch();
@@ -11,6 +13,14 @@ const Table = () => {
   const handleDelete = (id) => {
     dispatch(crudActions.deleteProduct({ id }));
   };
+  const headers = [
+    { label: 'ID', key: 'id' },
+    { label: 'Name', key: 'name' },
+    { label: 'Price', key: 'price' },
+    { label: 'Quantity', key: 'quantity' }
+  ];
+  console.log(products);
+
   return (
     <div className="container">
       <div className={`row ${classes.tableWrapper}`}>
@@ -45,6 +55,11 @@ const Table = () => {
             })}
           </tbody>
         </table>
+      <div className="text-center mt-3">
+      <CSVLink className="btn btn-primary" data={products} headers={headers} separator={";"} filename="products.csv">
+        Export
+      </CSVLink>
+      </div>
       </div>
     </div>
   );
